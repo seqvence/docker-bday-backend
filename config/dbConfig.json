@@ -1,0 +1,8 @@
+{
+    "database1": {
+        "hostname": "192.168.99.100",
+        "portNo": "32769",
+        "database": "dockerBirthday",
+        "collection": "submissions"
+    }
+}
