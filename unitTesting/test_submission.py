@@ -15,18 +15,19 @@ class TestSubmission(TestCase):
         Test for a POST request to return a json response
         :return:
         '''
-        message = post('http://' + webserverIP + ':' + webserverPort +'/competition',
-                       data={
-                           "name": "Mano Marks", \
-                           "twitter-handle": "@ManoMarks", \
-                           "location": "San Francisco, CA, USA", \
-                           "repo": ["manomarks/docker-birthday-1", "manomarks/docker-birthday-2",
-                                    "manomarks/docker-birthday-3"], \
-                           "vote": "node.js"
-                       }
-        ).json()
+        url = 'http://' + webserverIP + ':' + webserverPort +'/competition'
+        headers = {'content-type': 'application/json'}
+        message ={
+            "name": "Mano Marks",\
+            "twitter-handle": "@ManoMarks",\
+            "location": "San Francisco, CA, USA",\
+            "test": "test",\
+            "repo": ["manomarks/docker-birthday-1", "manomarks/docker-birthday-2", "manomarks/docker-birthday-3"],\
+            "vote": "node.js"\
+        }
+        response = post(url, data=json.dumps(message), headers=headers)
         try:
-            print json.dumps(message)
+            json.dumps(response.content)
         except:
             self.fail()
 

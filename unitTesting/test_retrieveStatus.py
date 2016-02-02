@@ -11,6 +11,5 @@ class TestRetrieveStatus(TestCase):
         self.assertIsNone('http://' + webserverIP + ':' + webserverPort +'/competition/' + '1234567')
         self.assertIsNone('http://' + webserverIP + ':' + webserverPort +'/competition/' + '9876543')
 
-
 if __name__ == '__main__':
     unittest.main()

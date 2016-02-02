@@ -8,7 +8,6 @@ from dbController import dbDriver
 app = Flask(__name__)
 api = Api(app)
 
-submissions = {}
 mongo = dbDriver()
 
 class RetrieveStatus(Resource):
@@ -27,8 +26,7 @@ class Submission(Resource):
         Accepts post requests and store them in the database
         :return: post(json) -> json, http_code
         '''
-        submissionID = len(submissions) + 1
-        submissions[submissionID] = request.form['name']
+        submissionID = mongo.insertRecord(request.json)
         return {'response': 'Congratulations for your submission. Your id is:' + str(submissionID)}, 200
 
 

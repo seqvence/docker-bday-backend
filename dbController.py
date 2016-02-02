@@ -26,6 +26,7 @@ class dbDriver():
             sys.exit(1)
         self.dbParam = self.dbConfig['database1']
         self.connect()
+        self.post = dict()
 
 
     def connect(self):
@@ -52,12 +53,14 @@ class dbDriver():
         :param post: json as string
         :return: ObjectId or None
         '''
-        if self._validJson(post):
+        self.post = post
+        try:
             self.post['submissionTime'] = str(datetime.datetime.utcnow())
             post_id = self.cHandle.insert_one(self.post).inserted_id
-            logging.info(post_id)
+            logging.debug(post_id)
             return post_id
-        else:
+        except Exception,e:
+            logging.error(e)
             return None
 
     def retrieveRecord(self,id):
@@ -83,8 +86,10 @@ class dbDriver():
 
     def _validJson(self,data):
         try:
+            logging.info(data)
             self.post = json.loads(data)
         except ValueError, e:
+            logging.error(e)
             return False
         return True
 
