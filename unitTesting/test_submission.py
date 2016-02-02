@@ -1,10 +1,13 @@
 __author__ = 'valentinstoican'
 
+import json
 import unittest
 from unittest import TestCase
-from requests import post, get
-import json
 
+from requests import post, get
+
+webserverIP = 'localhost'
+webserverPort = '5000'
 
 class TestSubmission(TestCase):
     def test_post(self):
@@ -12,7 +15,7 @@ class TestSubmission(TestCase):
         Test for a POST request to return a json response
         :return:
         '''
-        message = post('http://localhost:5000/competition',
+        message = post('http://' + webserverIP + ':' + webserverPort +'/competition',
                        data={
                            "name": "Mano Marks", \
                            "twitter-handle": "@ManoMarks", \
@@ -23,7 +26,7 @@ class TestSubmission(TestCase):
                        }
         ).json()
         try:
-            json.dumps(message)
+            print json.dumps(message)
         except:
             self.fail()
 
@@ -32,7 +35,7 @@ class TestSubmission(TestCase):
         Test for GET request not to be allowed on this endpoint
         :return: None
         '''
-        self.assertTrue("405" in str(get('http://localhost:5000/competition')))
+        self.assertTrue("405" in str(get('http://' + webserverIP + ':' + webserverPort +'/competition')))
 
 
 if __name__ == '__main__':

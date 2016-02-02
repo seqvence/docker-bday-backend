@@ -1,13 +1,15 @@
 __author__ = 'valentinstoican'
 
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_restful import Resource, Api
+
+from dbController import dbDriver
 
 app = Flask(__name__)
 api = Api(app)
 
 submissions = {}
-
+mongo = dbDriver()
 
 class RetrieveStatus(Resource):
     def get(self, submissionID):
@@ -16,10 +18,7 @@ class RetrieveStatus(Resource):
         :param submissionID:
         :return: get(int) -> str
         '''
-        if submissionID in submissions:
-            return jsonify(message='SubmissionID %i found' % submissionID)
-        else:
-            return jsonify(message='SubmissionID %i not found' % submissionID)
+        return {'response': mongo.retrieveRecord(submissionID)},200
 
 
 class Submission(Resource):
@@ -41,7 +40,7 @@ class Stats(Resource):
 api.add_resource(Submission, '/competition')
 
 # Create /competition/<int:submissionID> endpoint
-api.add_resource(RetrieveStatus, '/competition/<int:submissionID>')
+api.add_resource(RetrieveStatus, '/competition/<string:submissionID>')
 
 # Create /stats endpoint
 api.add_resource(Stats, '/stats')
