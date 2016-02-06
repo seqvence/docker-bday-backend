@@ -3,6 +3,7 @@ __author__ = 'valentinstoican'
 import datetime
 import json
 import logging
+import os
 import sys
 
 import bson
@@ -19,7 +20,7 @@ class dbDriver():
         :return:
         '''
         try:
-            with open("config/dbConfig.json") as configFile:
+            with open(os.path.join(os.path.dirname(__file__) + "/config/dbConfig.json")) as configFile:
                 self.dbConfig = json.load(configFile)
         except Exception as e:
             logging.error(e)
