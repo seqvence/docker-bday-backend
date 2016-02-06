@@ -21,7 +21,6 @@ class TestSubmission(TestCase):
             "name": "Mano Marks",\
             "twitter-handle": "@ManoMarks",\
             "location": "San Francisco, CA, USA",\
-            "test": "test",\
             "repo": ["manomarks/docker-birthday-1", "manomarks/docker-birthday-2", "manomarks/docker-birthday-3"],\
             "vote": "node.js"\
         }
