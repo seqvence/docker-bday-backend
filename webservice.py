@@ -32,7 +32,7 @@ class Submission(Resource):
 
 class Stats(Resource):
     def get(self):
-        return None, 200
+        return {'entries': 200}, 200
 
 # Create /competition endpoint
 api.add_resource(Submission, '/competition')
