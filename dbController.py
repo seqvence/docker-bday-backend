@@ -9,6 +9,7 @@ import sys
 import bson
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+from pymongo import ReturnDocument
 
 logging.basicConfig(level=logging.INFO, format=('%(asctime)s %(levelname)s %(message)s'))
 
@@ -57,6 +58,7 @@ class dbDriver():
         self.post = post
         try:
             self.post['submissionTime'] = str(datetime.datetime.utcnow())
+            self.post['status'] = "submitted"
             post_id = self.cHandle.insert_one(self.post).inserted_id
             logging.debug(post_id)
             return post_id
@@ -80,6 +82,13 @@ class dbDriver():
         except TypeError,e:
             logging.error(e)
             return None
+
+    def getOneRecord(self):
+        '''
+        Retrieve one record with status "submitted" and updates the status to "pending"
+        :return: dict
+        '''
+        return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}}, return_document=ReturnDocument.AFTER)
 
     def disconnect(self):
         self.client.close()
