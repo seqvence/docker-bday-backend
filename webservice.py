@@ -5,10 +5,30 @@ from flask_restful import Resource, Api
 
 from dbController import dbDriver
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 api = Api(app)
 
 mongo = dbDriver()
+
+
+class StaticAssets(Resource):
+    def get(self, path):
+        '''
+        Returns resource from static directory
+        :param path:
+        :return: get(str) -> file
+        '''
+        return app.send_static_file(path)
+
+
+class Index(Resource):
+    def get(self):
+        '''
+        Returns index from static directory
+        :return: get() -> file
+        '''
+        return app.send_static_file('index.html')
+
 
 class RetrieveStatus(Resource):
     def get(self, submissionID):
@@ -33,6 +53,10 @@ class Submission(Resource):
 class Stats(Resource):
     def get(self):
         return {'entries': 200}, 200
+
+# Static assets
+api.add_resource(StaticAssets, '/<path:path>')
+api.add_resource(Index, '/')
 
 # Create /competition endpoint
 api.add_resource(Submission, '/competition')
