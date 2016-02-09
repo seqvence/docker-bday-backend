@@ -8,6 +8,7 @@ import sys
 
 import bson
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 from pymongo import MongoClient
 from pymongo import ReturnDocument
 
@@ -89,6 +90,13 @@ class dbDriver():
         :return: dict
         '''
         return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}}, return_document=ReturnDocument.AFTER)
+
+    def getAllRecords(self):
+        '''
+        Retrieves all documents in collection
+        :return: dict
+        '''
+        return dumps(self.cHandle.find())
 
     def disconnect(self):
         self.client.close()

@@ -52,7 +52,8 @@ class Submission(Resource):
 
 class Stats(Resource):
     def get(self):
-        return {'entries': 200}, 200
+        records = mongo.getAllRecords()
+        return records, 200
 
 # Static assets
 api.add_resource(StaticAssets, '/<path:path>')
