@@ -1,8 +1,0 @@
-{
-    "database1": {
-        "hostname": "mongodb",
-        "portNo": "27017",
-        "database": "dockerBirthday",
-        "collection": "submissions"
-    }
-}

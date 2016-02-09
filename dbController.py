@@ -3,7 +3,6 @@ __author__ = 'valentinstoican'
 import datetime
 import json
 import logging
-import os
 import sys
 
 import bson
@@ -15,19 +14,13 @@ from pymongo import ReturnDocument
 logging.basicConfig(level=logging.INFO, format=('%(asctime)s %(levelname)s %(message)s'))
 
 class dbDriver():
-    def __init__(self):
+    def __init__(self, config):
         '''
         Loads configuration file into a dictionary
         Connects to Database(s)
         :return:
         '''
-        try:
-            with open(os.path.join(os.path.dirname(__file__) + "/config/dbConfig.json")) as configFile:
-                self.dbConfig = json.load(configFile)
-        except Exception as e:
-            logging.error(e)
-            sys.exit(1)
-        self.dbParam = self.dbConfig['database1']
+        self.dbParam = config
         self.connect()
         self.post = dict()
 

@@ -1,14 +1,14 @@
-__author__ = 'valentinstoican'
-
 from flask import Flask, request
 from flask_restful import Resource, Api
 
+import app_config as config
 from dbController import dbDriver
+
 
 app = Flask(__name__, static_folder='static')
 api = Api(app)
 
-mongo = dbDriver()
+mongo = dbDriver(config.database)
 
 
 class StaticAssets(Resource):

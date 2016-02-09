@@ -1,7 +1,7 @@
 import json
 
 import app_config as config
-from db.controller import dbDriver
+from dbController import dbDriver
 
 
 mongo = dbDriver(config.database)
