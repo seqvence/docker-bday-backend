@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request
 from flask_restful import Resource, Api
 
@@ -53,7 +55,7 @@ class Submission(Resource):
 class Stats(Resource):
     def get(self):
         records = mongo.getAllRecords()
-        return records, 200
+        return json.loads(records), 200
 
 # Static assets
 api.add_resource(StaticAssets, '/<path:path>')
