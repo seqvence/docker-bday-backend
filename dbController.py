@@ -91,6 +91,15 @@ class dbDriver():
         '''
         return dumps(self.cHandle.find())
 
+    def update_record_status(self, id, status):
+        self.cHandle.update({"_id": id},
+                            {
+                                "$set": {
+                                    "status": status
+                                },
+                                "$currentDate": {"lastModified": True}
+                            })
+
     def disconnect(self):
         self.client.close()
         return
