@@ -2,13 +2,13 @@
 	"name":"Mano Marks",
 	"twitter-handle":"@ManoMarks",
 	"location":"San Francisco, CA, USA",
-	"repo":["manomarks/docker-birthday-1","manomarks/docker-birthday-2"],
+	"repo":["busybox:latest"],
 	"vote":"node.js"
 },
 {
 	"name":"Alex Giurgiu",
 	"twitter-handle":"@nustiudinastea",
 	"location":"Amsterdam, NH, Netherlands",
-	"repo":["alex/docker-birthday-1","alex/docker-birthday-2"],
+	"repo":["busybox:latest"],
 	"vote":"python"
 }]
