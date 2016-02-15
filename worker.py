@@ -1,3 +1,7 @@
+import eventlet
+
+eventlet.monkey_patch()  # NOQA
+
 import app_config as config
 from dbController import dbDriver
 
@@ -8,13 +12,27 @@ import click
 
 logging.basicConfig(format=('%(asctime)s %(levelname)s %(message)s'), level=logging.DEBUG, )
 
-#@click.command()
-#@click.option('--submissions', default=10, type=click.IntRange(1, 20), help='Number of submissions to be processed per minute [1-20]')
-def docker_worker():
+@click.command()
+@click.option('--submissions', default=5, help='Number of submissions to be processed per interval (Default: 5)')
+@click.option('--interval', default=30, help='Interval used to process new submissions Default: 30)')
+def docker_worker(submissions, interval):
+    pool = eventlet.GreenPool(size=100)
+
+    while True:
+        try:
+            for _ in xrange(submissions):
+                pool.spawn(check_submission)
+            logging.info('Waiting for {} seconds'.format(interval))
+            eventlet.sleep(interval)
+        except (SystemExit, KeyboardInterrupt):
+            break
+
+
+def check_submission():
     mongo = dbDriver(config.database)
     record = mongo.getOneRecord()
     if not record:
-        logging.info("Idle.")
+        logging.info("Quiting. No new submission.")
         return
     logging.info('Starting container {} for user {}'.format(record['repo'][0], record['name']))
     test_result = run_container(record['repo'][0])
@@ -55,7 +73,6 @@ def run_container(image):
 
 if __name__ == '__main__':
     docker_worker()
-
 
 
 
