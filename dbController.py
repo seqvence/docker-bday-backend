@@ -89,7 +89,7 @@ class dbDriver():
         Retrieves all documents in collection
         :return: dict
         '''
-        return dumps(self.cHandle.find())
+        return dumps(self.cHandle.find({'status': 'successful'}))
 
     def update_record_status(self, id, status):
         self.cHandle.update({"_id": id},
