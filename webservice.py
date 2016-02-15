@@ -41,7 +41,7 @@ class RetrieveStatus(Resource):
         :param submissionID:
         :return: get(int) -> str
         '''
-        return {'response': mongo.retrieveRecord(submissionID)},200
+        return {'response': mongo.retrieveRecord(submissionID)}, 200
 
 
 class Submission(Resource):
