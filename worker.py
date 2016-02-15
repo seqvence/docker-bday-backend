@@ -48,16 +48,21 @@ def test_endpoint(ip, port):
     try:
         r = requests.get('http://{}:{}'.format(ip, port), timeout=3)
     except requests.exceptions.Timeout:
+        logging.error('Timeout connecting to {}:{}'.format(ip, port))
         return False
     if r.status_code == 200:
+        logging.info('{}:{} passed validation'.format(ip, port))
         return True
     else:
+        logging.info('{}:{} failed validation'.format(ip, port))
         return False
 
 
 def run_container(image):
     cli = Client(base_url=config.docker['api'])
-    container = cli.create_container(image=image)
+    container = cli.create_container(image=image, ports=[80])
+    networks = cli.networks(names=['compose_default'])
+    cli.connect_container_to_network(container=container.get('Id'), net_id=networks[0]['Id'])
     cli.start(container=container.get('Id'))
     container = cli.inspect_container(container=container.get('Id'))
     if container['State']['Status'] != 'running':
@@ -66,9 +71,11 @@ def run_container(image):
     if not container['NetworkSettings']['IPAddress']:
         logging.error('Container {} has no network. Something went wrong'.format(image))
         return
-    test_result = test_endpoint(container['NetworkSettings']['IPAddress'], 80)
+    test_result = test_endpoint(container['NetworkSettings']['Networks']['compose_default']['IPAddress'], 80)
     logging.info('Stoping container {}'.format(image))
     cli.stop(container=container.get('Id'), timeout=20)
+    logging.info('Removing container {}'.format(image))
+    cli.remove_container(container=container.get('Id'))
     return test_result
 
 if __name__ == '__main__':
