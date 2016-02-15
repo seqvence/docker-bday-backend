@@ -1,4 +1,5 @@
 import json
+import time
 
 from flask import Flask, request
 from flask_restful import Resource, Api
@@ -6,6 +7,7 @@ from flask_restful import Resource, Api
 import app_config as config
 from dbController import dbDriver
 
+time.sleep(3)
 
 app = Flask(__name__, static_folder='static')
 api = Api(app)
