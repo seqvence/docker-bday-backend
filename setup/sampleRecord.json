@@ -2,13 +2,13 @@
 	"name":"Mano Marks",
 	"twitter-handle":"@ManoMarks",
 	"location":"San Francisco, CA, USA",
-	"repo":["busybox:latest"],
+	"repo":["bogus_bday_image:latest"],
 	"vote":"node.js"
 },
 {
 	"name":"Alex Giurgiu",
 	"twitter-handle":"@nustiudinastea",
 	"location":"Amsterdam, NH, Netherlands",
-	"repo":["busybox:latest"],
+	"repo":["bogus_bday_image:latest"],
 	"vote":"python"
 }]

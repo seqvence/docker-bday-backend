@@ -1,8 +1,9 @@
 import app_config as config
 from dbController import dbDriver
 
-import logging
 from docker import Client
+import logging
+import requests
 import click
 
 logging.basicConfig(format=('%(asctime)s %(levelname)s %(message)s'), level=logging.DEBUG, )
@@ -26,12 +27,19 @@ def docker_worker():
 
 def test_endpoint(ip, port):
     logging.info('Testing endpoing {}:{}'.format(ip, port))
-    return True
+    try:
+        r = requests.get('http://{}:{}'.format(ip, port), timeout=3)
+    except requests.exceptions.Timeout:
+        return False
+    if r.status_code == 200:
+        return True
+    else:
+        return False
 
 
 def run_container(image):
     cli = Client(base_url=config.docker['api'])
-    container = cli.create_container(image=image, command='/bin/sleep 60')
+    container = cli.create_container(image=image)
     cli.start(container=container.get('Id'))
     container = cli.inspect_container(container=container.get('Id'))
     if container['State']['Status'] != 'running':
