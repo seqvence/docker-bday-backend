@@ -1,38 +1,41 @@
-__author__ = 'valentinstoican'
-
-import datetime
 import json
 import logging
-import sys
 
 import bson
-from bson.objectid import ObjectId
+import datetime
+import sys
+from bson.errors import InvalidId
 from bson.json_util import dumps
+from bson.objectid import ObjectId
 from pymongo import MongoClient
 from pymongo import ReturnDocument
 
-logging.basicConfig(level=logging.INFO, format=('%(asctime)s %(levelname)s %(message)s'))
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
-class dbDriver():
+
+class DBdriver():
     def __init__(self, config):
-        '''
+        """
         Loads configuration file into a dictionary
         Connects to Database(s)
+        :rtype: object
         :return:
-        '''
+        """
         self.dbParam = config
+        self.dbHandle = object
+        self.cHandle = object
+
         self.connect()
         self.post = dict()
 
-
     def connect(self):
-        '''
+        """
         Connects to Database(s) and generates handlers for Database and Collection
         :return: () -> None
-        '''
+        """
         try:
-            self.client= MongoClient(self.dbParam['hostname'],
-                        int(self.dbParam['portNo']), serverSelectionTimeoutMS=5)
+            self.client = MongoClient(self.dbParam['hostname'],
+                                      int(self.dbParam['portNo']), serverSelectionTimeoutMS=5)
             self.client.server_info()
         except Exception as e:
             logging.error(e)
@@ -42,13 +45,12 @@ class dbDriver():
 
         return
 
-
-    def insertRecord(self,post):
-        '''
+    def insert_record(self, post):
+        """
         Inserts a record into the Database.
         :param post: json as string
         :return: ObjectId or None
-        '''
+        """
         self.post = post
         try:
             self.post['submissionTime'] = str(datetime.datetime.utcnow())
@@ -56,42 +58,49 @@ class dbDriver():
             post_id = self.cHandle.insert_one(self.post).inserted_id
             logging.debug(post_id)
             return post_id
-        except Exception,e:
+        except Exception, e:
             logging.error(e)
             return None
 
-    def retrieveRecord(self,id):
-        '''
+    def retrieve_record(self, db_id):
+        """
         Returns corresponding record to the ObjectId passed as param
-        :param id: str
+        :param db_id: str
         :return:
-        '''
+        """
         try:
-            response = self.cHandle.find_one({"_id": ObjectId(id)})
+            response = self.cHandle.find_one({"_id": ObjectId(db_id)})
             del response['_id']
             return response
         except bson.errors.InvalidId, e:
             logging.error(e)
             return None
-        except TypeError,e:
+        except TypeError, e:
             logging.error(e)
             return None
 
-    def getOneRecord(self):
-        '''
+    def get_one_record(self):
+        """
         Retrieve one record with status "submitted" and updates the status to "pending"
         :return: dict
-        '''
-        return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}}, return_document=ReturnDocument.AFTER)
+        """
+        return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}},
+                                                return_document=ReturnDocument.AFTER)
 
     def getAllRecords(self):
-        '''
+        """
         Retrieves all documents in collection
         :return: dict
-        '''
+        """
         return dumps(self.cHandle.find({'status': 'successful'}))
 
     def update_record_status(self, id, status):
+        """
+        Update submission status
+        :param id: Object(id)
+        :param status: string
+        :return: None
+        """
         post = {
             "$set": {
                 "status": status
@@ -99,11 +108,22 @@ class dbDriver():
         }
         self.cHandle.update({"_id": id}, post)
 
+        return
+
     def disconnect(self):
+        """
+        Disconnect from database
+        :return: None
+        """
         self.client.close()
         return
 
-    def _validJson(self,data):
+    def _validJson(self, data):
+        """
+        Convert data to json. Returns True or False whether the input is a valid JSON format or not
+        :param data: 
+        :return: boolean
+        """
         try:
             logging.info(data)
             self.post = json.loads(data)
@@ -112,12 +132,14 @@ class dbDriver():
             return False
         return True
 
+
 def main():
-    a = dbDriver()
+    a = DBdriver()
     for i in range(1):
-        subID = a.insertRecord('{"a": "a"}')
-        logging.info(a.retrieveRecord(subID))
+        subID = a.insert_record('{"a": "a"}')
+        logging.info(a.retrieve_record(subID))
     a.disconnect()
+
 
 if __name__ == '__main__':
     main()

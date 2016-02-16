@@ -55,7 +55,7 @@ class Twitter(BaseType):
             return u'{0}'.format(value)
     def validate_twitter(self, value):
         if value is not None:
-            if not re.match('^@([A-Za-z0-9_]+)$', value) and not len(value) > 2:
+            if not re.match('^@([A-Za-z0-9_]+)$', value) or not len(value) > 2:
                 raise ValidationError("Value must be valid Twitter acount of the form @username")
 
 
