@@ -2,9 +2,9 @@ __author__ = 'valentinstoican'
 
 import logging
 import re
+import urllib
 
 import requests
-import urllib
 from schematics.exceptions import ValidationError
 from schematics.models import Model
 from schematics.types import StringType, BaseType
@@ -59,6 +59,6 @@ class Submission(Model):
     name = StringType(required=True, min_length=5, max_length=50)
     twitter = Twitter()
     location = StringType(required=True, min_length=1, max_length=100)
-    repo = ListType(StringType(required=True, regex="^[a-zA-Z0-9-_/]*$"), required=True)
+    repo = ListType(StringType(required=True, regex="^[a-zA-Z0-9-_/:]*$"), required=True)
     vote = StringType(required=True, min_length=1, max_length=50)
 
