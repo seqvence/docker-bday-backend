@@ -34,7 +34,6 @@ def _profanityCheck(data):
     :param data: string
     :return: boolean
     '''
-    logging.info("checking {}".format(urllib.pathname2url(str(data))))
     try:
         response = requests.get("http://www.wdyl.com/profanity?q="+ urllib.pathname2url(data), timeout=1)
         if "true" in response.text:
@@ -51,7 +50,7 @@ class Twitter(BaseType):
             return u'{0}'.format(value)
     def validate_twitter(self, value):
         if value is not None:
-            if not re.match('^@([A-Za-z0-9_]+)$', value) and not len(value) > 2:
+            if not re.match('^@([A-Za-z0-9_]+)$', value) or not len(value) > 2:
                 raise ValidationError("Value must be valid Twitter acount of the form @username")
 
 
