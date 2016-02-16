@@ -2,9 +2,9 @@ __author__ = 'valentinstoican'
 
 import json
 import logging
+import re
 
 import click
-import re
 import requests
 import sys
 from schematics.exceptions import ValidationError
@@ -70,8 +70,3 @@ class Submission(Model):
 
 if __name__ == '__main__':
     DAppSubmit()
-
-
-
-
-
