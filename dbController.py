@@ -1,9 +1,9 @@
 import json
 import logging
+import sys
 
 import bson
 import datetime
-import sys
 from bson.errors import InvalidId
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -134,11 +134,12 @@ class DBdriver():
 
 
 def main():
-    a = DBdriver()
-    for i in range(1):
-        subID = a.insert_record('{"a": "a"}')
-        logging.info(a.retrieve_record(subID))
-    a.disconnect()
+    # a = DBdriver()
+    # for i in range(1):
+    #     subID = a.insert_record('{"a": "a"}')
+    #     logging.info(a.retrieve_record(subID))
+    # a.disconnect()
+    pass
 
 
 if __name__ == '__main__':
