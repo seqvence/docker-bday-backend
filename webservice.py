@@ -77,7 +77,7 @@ api.add_resource(Index, '/')
 api.add_resource(Submission, '/competition')
 
 # Create /competition/<int:submissionID> endpoint
-api.add_resource(RetrieveStatus, '/competition/<string:submissionID>')
+api.add_resource(RetrieveStatus, '/competition/<string:submission_id>')
 
 # Create /stats endpoint
 api.add_resource(Stats, '/stats')
