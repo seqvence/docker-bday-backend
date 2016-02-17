@@ -1,6 +1,6 @@
 import json
-
 import time
+
 from flask import Flask, request
 from flask_restful import Resource, Api
 
@@ -49,7 +49,6 @@ class RetrieveStatus(Resource):
 
 
 class Submission(Resource):
-    @property
     def post(self):
         """
         Accepts post requests and store them in the database.
@@ -57,7 +56,7 @@ class Submission(Resource):
         """
         check_input = validateSubmission.validate_input(request.json)
         if check_input[0]:
-            submission_id = mongo.insertRecord(request.json)
+            submission_id = mongo.insert_record(request.json)
             return {'response': "Congratulations for your submission. Your id is: {}".format(str(submission_id))}, 200
         else:
             return {'response': "Your submission was not successfful due to: {}".format(check_input[1])}, 200
@@ -66,7 +65,7 @@ class Submission(Resource):
 class Stats(Resource):
     @classmethod
     def get(self):
-        records = mongo.getAllRecords()
+        records = mongo.get_all_records()
         return json.loads(records), 200
 
 
