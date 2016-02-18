@@ -13,20 +13,16 @@ from pymongo import ReturnDocument
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
 
-class DBdriver():
+class DBdriver:
+
     def __init__(self, config):
-        """
-        Loads configuration file into a dictionary
-        Connects to Database(s)
-        :rtype: object
-        :return:
-        """
         self.dbParam = config
-        self.dbHandle = object
-        self.cHandle = object
+        self.dbHandle = None
+        self.cHandle = None
+        self.client = None
+        self.post = None
 
         self.connect()
-        self.post = dict()
 
     def connect(self):
         """
@@ -42,25 +38,6 @@ class DBdriver():
             sys.exit(1)
         self.dbHandle = self.client[self.dbParam['database']]
         self.cHandle = self.dbHandle[self.dbParam['collection']]
-
-        return
-
-    def insert_record(self, post):
-        """
-        Inserts a record into the Database.
-        :param post: json as string
-        :return: ObjectId or None
-        """
-        self.post = post
-        try:
-            self.post['submissionTime'] = str(datetime.datetime.utcnow())
-            self.post['status'] = "submitted"
-            post_id = self.cHandle.insert_one(self.post).inserted_id
-            logging.debug(post_id)
-            return post_id
-        except Exception, e:
-            logging.error(e)
-            return None
 
     def retrieve_record(self, db_id):
         """
@@ -79,6 +56,23 @@ class DBdriver():
             logging.error(e)
             return None
 
+    def insert_record(self, post):
+        """
+        Inserts a record into the Database.
+        :param post: json as string
+        :return: ObjectId or None
+        """
+        self.post = post
+        try:
+            self.post['submissionTime'] = str(datetime.datetime.utcnow())
+            self.post['status'] = "submitted"
+            post_id = self.cHandle.insert_one(self.post).inserted_id
+            logging.debug(post_id)
+            return post_id
+        except Exception, e:
+            logging.error(e)
+            return None
+
     def get_one_record(self):
         """
         Retrieve one record with status "submitted" and updates the status to "pending"
@@ -87,7 +81,7 @@ class DBdriver():
         return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}},
                                                 return_document=ReturnDocument.AFTER)
 
-    def getAllRecords(self):
+    def get_all_records(self):
         """
         Retrieves all documents in collection
         :return: dict
@@ -118,10 +112,10 @@ class DBdriver():
         self.client.close()
         return
 
-    def _validJson(self, data):
+    def _valid_json(self, data):
         """
         Convert data to json. Returns True or False whether the input is a valid JSON format or not
-        :param data: 
+        :param data:
         :return: boolean
         """
         try:
@@ -131,16 +125,3 @@ class DBdriver():
             logging.error(e)
             return False
         return True
-
-
-def main():
-    # a = DBdriver()
-    # for i in range(1):
-    #     subID = a.insert_record('{"a": "a"}')
-    #     logging.info(a.retrieve_record(subID))
-    # a.disconnect()
-    pass
-
-
-if __name__ == '__main__':
-    main()
