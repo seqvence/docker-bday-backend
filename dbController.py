@@ -66,6 +66,7 @@ class DBdriver:
         try:
             self.post['submissionTime'] = str(datetime.datetime.utcnow())
             self.post['status'] = "submitted"
+            self.post['statusmsg'] = "Waiting for images to be tested"
             post_id = self.cHandle.insert_one(self.post).inserted_id
             logging.debug(post_id)
             return post_id
