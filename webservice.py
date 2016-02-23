@@ -57,7 +57,7 @@ class Submission(Resource):
         check_input = validateSubmission.validate_input(request.json)
         if check_input[0]:
             submission_id = mongo.insert_record(request.json)
-            return {'response': "Congratulations for your submission. Your id is: {}".format(str(submission_id))}, 200
+            return {'response': "{}/{}".format(request.base_url, str(submission_id))}, 200
         else:
             return {'response': "Your submission was not successfful due to: {}".format(check_input[1])}, 200
 
