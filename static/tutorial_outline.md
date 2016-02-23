@@ -1,6 +1,5 @@
-#Docker Birthday Competition
 ##Working instructions
-<br><br>
+<br>
 ## Install Docker
 
 Docker is available for several platforms and you may choose from any of the ones listed below:

@@ -304,13 +304,11 @@ sup {
 </style>
 </head>
 <body>
-<h1 id="toc_0">Docker Birthday Competition</h1>
+<h2 id="toc_0">Working instructions</h2>
 
-<h2 id="toc_1">Working instructions</h2>
+<p><br></p>
 
-<p><br><br></p>
-
-<h2 id="toc_2">Install Docker</h2>
+<h2 id="toc_1">Install Docker</h2>
 
 <p>Docker is available for several platforms and you may choose from any of the ones listed below:</p>
 
@@ -324,9 +322,9 @@ sup {
 
 <p><br></p>
 
-<h2 id="toc_3">Getting in the driver&#39;s seat with Docker</h2>
+<h2 id="toc_2">Getting in the driver&#39;s seat with Docker</h2>
 
-<h3 id="toc_4">Test your installation</h3>
+<h3 id="toc_3">Test your installation</h3>
 
 <p>Assuming you managed to install Docker to this point you can test your installation by running from the command line interface the following command:</p>
 
@@ -343,7 +341,7 @@ Status: Downloaded newer image for hello-world:latest</code></pre></div>
 
 <p>If the output the see on your screen matches the one above that means you have a working Docker installation. Congrats!</p>
 
-<h3 id="toc_5">Pull an image</h3>
+<h3 id="toc_4">Pull an image</h3>
 
 <p>Everything starts with an image, a docker image. In order to download it and run it on your computer you need to execute:</p>
 
@@ -367,11 +365,11 @@ You can check the newly downloaded image in your local repository by executing t
 <div><pre><code class="language-none">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              14b59d36bae0        5 days ago          187.9 MB</code></pre></div>
 
-<h3 id="toc_6">Basic controlls for containers</h3>
+<h3 id="toc_5">Basic controlls for containers</h3>
 
 <hr>
 
-<h4 id="toc_7"><em>Run a container</em></h4>
+<h4 id="toc_6"><em>Run a container</em></h4>
 
 <hr>
 
@@ -392,7 +390,7 @@ $</code></pre></div>
 
 <hr>
 
-<h4 id="toc_8"><em>Check container&#39;s status</em></h4>
+<h4 id="toc_7"><em>Check container&#39;s status</em></h4>
 
 <hr>
 
@@ -437,7 +435,7 @@ b49d4c8c06d2        ubuntu              &quot;echo &#39;Happy Birthday&quot;   9
 
 <hr>
 
-<h4 id="toc_9"><em>Stop a container</em></h4>
+<h4 id="toc_8"><em>Stop a container</em></h4>
 
 <hr>
 
@@ -476,7 +474,7 @@ f433174abbc8        ubuntu              &quot;sleep 100&quot;              5 min
 
 <hr>
 
-<h4 id="toc_10">Remove a container</h4>
+<h4 id="toc_9">Remove a container</h4>
 
 <hr>
 
@@ -506,7 +504,7 @@ $</code></pre></div>
 
 <hr>
 
-<h4 id="toc_11"><em>Getting into</em> containers</h4>
+<h4 id="toc_10"><em>Getting into</em> containers</h4>
 
 <hr>
 
@@ -528,9 +526,9 @@ This is how you do it: </p>
 
 <p><br></p>
 
-<h2 id="toc_12">Let&#39;s do some work, for real this time</h2>
+<h2 id="toc_11">Let&#39;s do some work, for real this time</h2>
 
-<h3 id="toc_13">Build your own Docker image</h3>
+<h3 id="toc_12">Build your own Docker image</h3>
 
 <p>Before you start building your own Docker image you need to get familiar to few concepts.
 Docker uses a <em>Dockerfile</em> containing instructions on how to build an image. </p>
@@ -583,25 +581,25 @@ myapp/latest        latest              606769c7653d        2 minutes ago       
 
 <p>Nevertheless, we encourage you to check the <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> to be able to build a fully capable Docker image.</p>
 
-<h2 id="toc_14">Modify Docker Voting App</h2>
+<h2 id="toc_13">Modify Docker Voting App</h2>
 
-<h3 id="toc_15">API Specs</h3>
+<h3 id="toc_14">API Specs</h3>
 
 <p>Once you finished bulding your own App you need to create an API which will listen on port 80 and will respond to a call as described below:</p>
 
 <div><pre><code class="language-none">$ telnet DOCKER_CONTAINER 80</code></pre></div>
 
-<h2 id="toc_16">Build new images</h2>
+<h2 id="toc_15">Build new images</h2>
 
 <p><strong>Based on the Docker Voting App</strong></p>
 
 <p>It is now the time to build the image and incorporate the Voting App.</p>
 
-<h3 id="toc_17">Writing &quot;The&quot; Dockerfile</h3>
+<h3 id="toc_16">Writing &quot;The&quot; Dockerfile</h3>
 
-<h2 id="toc_18">Testing your image</h2>
+<h2 id="toc_17">Testing your image</h2>
 
-<h2 id="toc_19">Submit new images to the DockerHub</h2>
+<h2 id="toc_18">Submit new images to the DockerHub</h2>
 
 <p>Now that you have your Docker images ready you need to upload them to DockerHub. If you don&#39;t have an account yet you can create one <a href="https://hub.docker.com">here</a>.</p>
 
@@ -611,11 +609,11 @@ myapp/latest        latest              606769c7653d        2 minutes ago       
 
 <p>Here you will be prompted for username / password / email address.</p>
 
-<h2 id="toc_20">Submit your entry in the competition</h2>
+<h2 id="toc_19">Submit your entry in the competition</h2>
 
-<h3 id="toc_21">Submission API specs</h3>
+<h3 id="toc_20">Submission API specs</h3>
 
-<h3 id="toc_22">Check submission status</h3>
+<h3 id="toc_21">Check submission status</h3>
 
 
 </body>
