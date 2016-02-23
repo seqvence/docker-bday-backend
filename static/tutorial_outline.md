@@ -243,22 +243,38 @@ Nevertheless, we encourage you to check the <a href="https://docs.docker.com/eng
 
 ## Modify Docker Voting App
 
+
 ### API Specs
 
+Once you finished bulding your own App you need to create an API which will listen on port 80 and will respond to a call as described below:
+
+	$ telnet DOCKER_CONTAINER 80
+	
 
 ## Build new images 
 **Based on the Docker Voting App**
 
-Writing Dockerfile
+It is now the time to build the image and incorporate the Voting App.
 
-In order to build your app 
+### Writing "The" Dockerfile
 
-- Testing your image
+
+## Testing your image
 
 ## Submit new images to the DockerHub
+
+Now that you have your Docker images ready you need to upload them to DockerHub. If you don't have an account yet you can create one <a href="https://hub.docker.com">here</a>.
+
+Once you created an account you can go back to a terminal and run 
+
+	$ docker login
+	
+Here you will be prompted for username / password / email address.
+
 
 ## Submit your entry in the competition
 
 ### Submission API specs
+
 
 ### Check submission status

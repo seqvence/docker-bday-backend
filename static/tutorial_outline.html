@@ -1,0 +1,623 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>tutorial_outline</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Docker Birthday Competition</h1>
+
+<h2 id="toc_1">Working instructions</h2>
+
+<p><br><br></p>
+
+<h2 id="toc_2">Install Docker</h2>
+
+<p>Docker is available for several platforms and you may choose from any of the ones listed below:</p>
+
+<ul>
+<li><a href="https://docs.docker.com/mac/step_one/">MacOS</a></li>
+<li><a href="https://docs.docker.com/linux/step_one/">Linux</a></li>
+<li><a href="https://docs.docker.com/windows/">Windows</a></li>
+</ul>
+
+<p>For further information please refer to the <a href="https://docs.docker.com/">Docker Docs page</a></p>
+
+<p><br></p>
+
+<h2 id="toc_3">Getting in the driver&#39;s seat with Docker</h2>
+
+<h3 id="toc_4">Test your installation</h3>
+
+<p>Assuming you managed to install Docker to this point you can test your installation by running from the command line interface the following command:</p>
+
+<div><pre><code class="language-none">$ docker run hello-world</code></pre></div>
+
+<p>The output should look like</p>
+
+<div><pre><code class="language-none">Unable to find image &#39;hello-world:latest&#39; locally
+latest: Pulling from library/hello-world
+03f4658f8b78: Pull complete 
+a3ed95caeb02: Pull complete 
+Digest: sha256:8be990ef2aeb16dbcb9271ddfe2610.......
+Status: Downloaded newer image for hello-world:latest</code></pre></div>
+
+<p>If the output the see on your screen matches the one above that means you have a working Docker installation. Congrats!</p>
+
+<h3 id="toc_5">Pull an image</h3>
+
+<p>Everything starts with an image, a docker image. In order to download it and run it on your computer you need to execute:</p>
+
+<div><pre><code class="language-none">$ docker pull IMAGE_NAME</code></pre></div>
+
+<p>First you need to know what image to pull so you can run <strong><em>docker search</em></strong>. For instance, if you want to download the <strong>latest ubuntu</strong> image you can run the following commands:</p>
+
+<div><pre><code class="language-none">$ docker search ubuntu</code></pre></div>
+
+<p>You will retrieve all images matching the keyword <strong>ubuntu</strong> and now you can download the image tagged the latest by simply running the following command:</p>
+
+<div><pre><code class="language-none">$ docker pull ubuntu:latest</code></pre></div>
+
+<p>Don&#39;t believe it until you see it! 
+You can check the newly downloaded image in your local repository by executing the following command:</p>
+
+<div><pre><code class="language-none">$ docker images</code></pre></div>
+
+<p>Which will have a similar output to the one below:</p>
+
+<div><pre><code class="language-none">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              14b59d36bae0        5 days ago          187.9 MB</code></pre></div>
+
+<h3 id="toc_6">Basic controlls for containers</h3>
+
+<hr>
+
+<h4 id="toc_7"><em>Run a container</em></h4>
+
+<hr>
+
+<p>Since you have already an image present in your local registry let&#39;s run that one.</p>
+
+<div><pre><code class="language-none">$ docker run ubuntu
+$</code></pre></div>
+
+<p>Don&#39;t be dissapointed if you didn&#39;t get any output this time. This is due to the fact that <strong>docker run</strong> executes an empty command in a container.</p>
+
+<p>Let&#39;s execute a command within the container, which as simple as running </p>
+
+<div><pre><code class="language-none">$ docker run -i ubuntu echo &#39;Happy Birthday Docker!&#39;
+$ Happy Birthday Docker!
+$</code></pre></div>
+
+<p>Using <em>-i</em> OPTION will execute the container in an interactive mode which allows you to see the output of the echo command.</p>
+
+<hr>
+
+<h4 id="toc_8"><em>Check container&#39;s status</em></h4>
+
+<hr>
+
+<p>You can check the status of the container created using:</p>
+
+<div><pre><code class="language-none">docker ps -a</code></pre></div>
+
+<p>The output will be similar to:</p>
+
+<div><pre><code class="language-none">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS                           NAMES
+b49d4c8c06d2        ubuntu              &quot;echo &#39;Happy Birthday&quot;   9 seconds ago       Exited (0) 1 seconds ago                                   silly_galileo</code></pre></div>
+
+<p>Some useful information for going forward. In the above output please pay attention to the following columns:</p>
+
+<table>
+<thead>
+<tr>
+<th>Header Elements</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CONTAINER ID</td>
+<td>Unique identifier of an instance of the image</td>
+</tr>
+<tr>
+<td>IMAGE</td>
+<td>Image name used to start the container</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>Command which is being/was executed</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>Current status of the container</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_9"><em>Stop a container</em></h4>
+
+<hr>
+
+<p>To stop a container, you need to execute <em>docker stop CONTAINER ID</em></p>
+
+<p>Let&#39;s give it a try, but first we need to have a running container that we can stop so we can start one.</p>
+
+<div><pre><code class="language-none">$ docker run -d ubuntu sleep 100
+$ f433174abbc8..................</code></pre></div>
+
+<p>Check the status of the container:</p>
+
+<div><pre><code class="language-none">$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                           NAMES
+f433174abbc8        ubuntu              &quot;sleep 100&quot;              3 minutes ago       Up 10 seconds                                               high_blackwell</code></pre></div>
+
+<p>Container is running for 10 seconds or in your case the time indicated on the STATUS column.</p>
+
+<div><pre><code class="language-none">$ docker stop f433174abbc8</code></pre></div>
+
+<p>To check whether container is stopped now, run again:</p>
+
+<div><pre><code class="language-none">$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                           NAMES
+f433174abbc8        ubuntu              &quot;sleep 100&quot;              5 minutes ago       Exited (1) 2 seconds ago                                    high_blackwell</code></pre></div>
+
+<p>Container is now stopped. </p>
+
+<p>If you want to stop all running containers you can use either of the commands below:</p>
+
+<div><pre><code class="language-none">$ docker stop $(docker ps -a -q)</code></pre></div>
+
+<p>OR</p>
+
+<div><pre><code class="language-none">$ docker ps -a -q | xargs docker stop</code></pre></div>
+
+<hr>
+
+<h4 id="toc_10">Remove a container</h4>
+
+<hr>
+
+<p>Should the container fulfiled its duties you can remove it by executing <em>docker rm</em>.</p>
+
+<p><strong>Note:</strong> Containers need to be stopped before removing them.</p>
+
+<div><pre><code class="language-none">$ docker rm f433174abbc8</code></pre></div>
+
+<p>Check again the status of containers and you will notice the container has been removed.</p>
+
+<div><pre><code class="language-none">$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+$</code></pre></div>
+
+<p>If you want to remove all containers you can use:</p>
+
+<div><pre><code class="language-none">$ docker rm $(docker ps -a -q)</code></pre></div>
+
+<p>OR</p>
+
+<div><pre><code class="language-none">$ docker ps -a -q | xargs docker rm</code></pre></div>
+
+<p>TIPS: For stopping and removing all containers in one line:</p>
+
+<div><pre><code class="language-none">$ docker rm $(docker stop $(docker ps -a -q))</code></pre></div>
+
+<hr>
+
+<h4 id="toc_11"><em>Getting into</em> containers</h4>
+
+<hr>
+
+<p>So far so good. Things are pretty straightforward, right?</p>
+
+<p>Let&#39;s give it a spin and access the shell inside a container</p>
+
+<div><pre><code class="language-none">$ docker run -t -i ubuntu /bin/bash
+root@8d78eab8df45:/# </code></pre></div>
+
+<p>Inside the container you can run any commands you would usually run on <strong>Ubuntu Linux</strong> so feel free to look around. 
+<br></p>
+
+<p><strong>Note:</strong>
+Before ending the shell session you may want to install <strong>curl</strong> since we&#39;re planning to use it later.
+This is how you do it: </p>
+
+<div><pre><code class="language-none">root@8d78eab8df45:/# apt-get install -y curl</code></pre></div>
+
+<p><br></p>
+
+<h2 id="toc_12">Let&#39;s do some work, for real this time</h2>
+
+<h3 id="toc_13">Build your own Docker image</h3>
+
+<p>Before you start building your own Docker image you need to get familiar to few concepts.
+Docker uses a <em>Dockerfile</em> containing instructions on how to build an image. </p>
+
+<p>A full Dockerfile refence is available <a href="https://docs.docker.com/engine/reference/builder/">here</a>.</p>
+
+<p>If you can&#39;t wait to build your first image you can follow the simple guide below. </p>
+
+<p>Dockerfile is structured as follows:</p>
+
+<div><pre><code class="language-none"># FROM is the first instruction in a Dockerfile. 
+# It specifies the image used as a base for the image which is going to be built
+FROM ubuntu:latest
+
+# MAINTAINER allows you to set the author of the image
+MAINTAINER your_name &lt;your@email_address&gt;
+
+# LABEL instructions add metadata to the image. 
+LABEL &quot;My App&quot;
+LABEL &quot;version 1.0&quot;
+LABEL description=&quot;This is my first app running in a Docker container&quot; 
+
+# ENV instruction is used to set environment variables
+ENV APP_PATH /opt/app
+
+# RUN executes a command during the image building process
+RUN apt-get -y update
+RUN apt-get install -y curl
+RUN apt-get install -y git
+RUN mkdir $APP_PATH
+
+# ADD copy local/remote files to the image
+ADD ./local/app/* $APP_PATH
+
+# EXPOSE informs Docker that container listens on port 80
+EXPOSE 80</code></pre></div>
+
+<p>In order to build your first Docker image you can run the following command:</p>
+
+<div><pre><code class="language-none">$ docker build -t myapp:latest -f /path/to/dockerfile/
+$           ...
+$           ...
+$ Successfully built 606769c7653d</code></pre></div>
+
+<p>Once the build is over you can check your new Docker image:</p>
+
+<div><pre><code class="language-none">$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+myapp/latest        latest              606769c7653d        2 minutes ago       249.1 MB</code></pre></div>
+
+<p>Nevertheless, we encourage you to check the <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> to be able to build a fully capable Docker image.</p>
+
+<h2 id="toc_14">Modify Docker Voting App</h2>
+
+<h3 id="toc_15">API Specs</h3>
+
+<p>Once you finished bulding your own App you need to create an API which will listen on port 80 and will respond to a call as described below:</p>
+
+<div><pre><code class="language-none">$ telnet DOCKER_CONTAINER 80</code></pre></div>
+
+<h2 id="toc_16">Build new images</h2>
+
+<p><strong>Based on the Docker Voting App</strong></p>
+
+<p>It is now the time to build the image and incorporate the Voting App.</p>
+
+<h3 id="toc_17">Writing &quot;The&quot; Dockerfile</h3>
+
+<h2 id="toc_18">Testing your image</h2>
+
+<h2 id="toc_19">Submit new images to the DockerHub</h2>
+
+<p>Now that you have your Docker images ready you need to upload them to DockerHub. If you don&#39;t have an account yet you can create one <a href="https://hub.docker.com">here</a>.</p>
+
+<p>Once you created an account you can go back to a terminal and run </p>
+
+<div><pre><code class="language-none">$ docker login</code></pre></div>
+
+<p>Here you will be prompted for username / password / email address.</p>
+
+<h2 id="toc_20">Submit your entry in the competition</h2>
+
+<h3 id="toc_21">Submission API specs</h3>
+
+<h3 id="toc_22">Check submission status</h3>
+
+
+</body>
+
+</html>
