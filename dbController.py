@@ -82,12 +82,35 @@ class DBdriver:
         return self.cHandle.find_one_and_update({'status': 'submitted'}, {'$set': {'status': 'pending'}},
                                                 return_document=ReturnDocument.AFTER)
 
-    def get_all_records(self):
+    def get_all_records(self, status):
         """
         Retrieves all documents in collection
+        :param status: string
         :return: dict
         """
-        return dumps(self.cHandle.find({'status': 'successful'}))
+        response = dict()
+        response['submissions'] = list(self.cHandle.find(filter={'status': status},
+                                       projection={'_id': True,
+                                                   'name': True,
+                                                   'twitter': True,
+                                                   'coordinates': True}))
+        for record in response['submissions']:
+            record['id'] = str(record['_id'])
+            del record['_id']
+
+        response['votes_stats'] = self.cHandle.group(key={'vote': 1},
+                                                     condition={'status': status},
+                                                     initial={"count": 0},
+                                                     reduce="function(o, p) {p.count++}")
+
+        response['votes'] = dict()
+
+        for record in response['votes_stats']:
+            response['votes'][record['vote'].title()] = int(record['count'])
+
+        del response['votes_stats']
+
+        return dumps(response)
 
     def update_record_status(self, id, status):
         """

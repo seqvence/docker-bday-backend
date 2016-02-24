@@ -65,7 +65,7 @@ class Submission(Resource):
 class Stats(Resource):
     @classmethod
     def get(self):
-        records = mongo.get_all_records()
+        records = mongo.get_all_records("submitted")
         return json.loads(records), 200
 
 
