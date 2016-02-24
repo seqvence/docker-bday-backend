@@ -15,7 +15,7 @@ For further information please refer to the <a href="https://docs.docker.com/">D
 
 ### Test your installation
 
-Assuming you managed to install Docker to this point you can test your installation by running from the command line interface the following command:
+Assuming you managed to install Docker up to this point, you can test your installation by running from the command line interface the following command:
 
 	$ docker run hello-world
 

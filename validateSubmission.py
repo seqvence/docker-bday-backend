@@ -7,6 +7,7 @@ from schematics.exceptions import ValidationError
 from schematics.models import Model
 from schematics.types import StringType, BaseType
 from schematics.types.compound import ListType
+from profanityChecker import ProfanityChecker
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(funcName)-15s() %(levelname)s %(message)s')
 
@@ -18,11 +19,12 @@ def validate_input(input_data):
     :param input_data
     :return: boolean, string
     """
+    p_checker = ProfanityChecker()
     try:
         Submission(input_data).validate()
         for value in input_data.values():
-            if _profanity_check(str(value)):
-                return False, "Value /{}/ not accepted.".format(value)
+            if p_checker.validate(str(value)):
+                return False, "Value /{}/ not accepted in {}.".format(p_checker.validate(str(value)), value)
         return True, ""
     except Exception, e:
         logging.error(e)
@@ -35,6 +37,7 @@ def _profanity_check(data):
     :param data: string
     :return: boolean
     """
+
     try:
         response = requests.get("http://www.wdyl.com/profanity?q=" + urllib.pathname2url(data), timeout=1)
         if "true" in response.text:
