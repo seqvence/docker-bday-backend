@@ -7,11 +7,14 @@ from flask_restful import Resource, Api
 import app_config as config
 import validateSubmission
 from dbController import DBdriver
+from werkzeug.contrib.fixers import ProxyFix
+
 
 time.sleep(3)
 
 app = Flask(__name__, static_folder='static')
 api = Api(app)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 mongo = DBdriver(config.database)
 
