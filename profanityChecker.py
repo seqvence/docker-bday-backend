@@ -33,11 +33,7 @@ class ProfanityChecker:
 
 
 def main():
-    p_filter = ProfanityChecker()
-    print p_filter.validate("Fuck this world")
-    print p_filter.validate("You are anasshole")
-    print p_filter.validate("Today is sunny")
-
+    pass
 
 if  __name__ == "__main__":
     main()

@@ -31,24 +31,6 @@ def validate_input(input_data):
         return False, e
 
 
-def _profanity_check(data):
-    """
-    Performs profanity checks
-    :param data: string
-    :return: boolean
-    """
-
-    try:
-        response = requests.get("http://www.wdyl.com/profanity?q=" + urllib.pathname2url(data), timeout=1)
-        if "true" in response.text:
-            return True
-        else:
-            return False
-    except Exception, e:
-        logging.error("Failed to perform profanity check due to {}.".format(e))
-        return False
-
-
 class Twitter(BaseType):
     def to_primitive(self, value, context=None):
         if value is not None:
@@ -57,12 +39,12 @@ class Twitter(BaseType):
     def validate_twitter(self, value):
         if value is not None:
             if not re.match('^@([A-Za-z0-9_]+)$', value) or not len(value) > 2:
-                raise ValidationError("Value must be valid Twitter acount of the form @username")
+                raise ValidationError("Value must be valid Twitter account of the form @username")
 
 
 class Submission(Model):
     name = StringType(required=True, min_length=5, max_length=50)
     twitter = Twitter()
     location = StringType(required=True, min_length=1, max_length=100)
-    repo = ListType(StringType(required=True, regex="^[a-zA-Z0-9-_/:.]*$"), max_size=3, required=True)
+    repo = ListType(StringType(required=True, regex="^[a-zA-Z0-9-_/:.]*$"), min_size=1, max_size=3, required=True)
     vote = StringType(required=True, min_length=1, max_length=50)
