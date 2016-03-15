@@ -30,8 +30,14 @@ class DBdriver:
         :return: () -> None
         """
         try:
-            self.client = MongoClient(self.dbParam['hostname'],
-                                      int(self.dbParam['portNo']), serverSelectionTimeoutMS=5)
+            self.client = MongoClient('mongodb://' +
+                                      self.dbParam['username'] + ':' +
+                                      self.dbParam['password'] + '@' +
+                                      self.dbParam['hostname'] + ':' +
+                                      self.dbParam['portNo'] +
+                                      '/?replicaSet=' +
+                                      self.dbParam['replicaSet']
+                                      )
             self.client.server_info()
         except Exception as e:
             logging.error(e)
