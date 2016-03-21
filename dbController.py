@@ -9,6 +9,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from pymongo import ReturnDocument
+from pymongo import ASCENDING, DESCENDING
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
@@ -70,10 +71,28 @@ class DBdriver:
         """
         self.post = post
         try:
-            self.post['submissionTime'] = str(datetime.datetime.utcnow())
+            prev_post = None
+            # Check status for the last submission with the same information
+            for record in self.cHandle.find(post, {'_id': 1, 'status': 1}).sort('submissionTime', DESCENDING):
+                prev_post = record
+                break
+
             self.post['status'] = "submitted"
+            self.post['submissionTime'] = str(datetime.datetime.utcnow())
             self.post['statusmsg'] = "Waiting for images to be tested"
-            post_id = self.cHandle.insert_one(self.post).inserted_id
+
+            if prev_post is not None:
+                post_id = prev_post['_id']
+                # if status is not in the list "successful", "submitted", "pending", "duplicated"
+                # status is set to "submitted" to be processed again.
+                if prev_post['status'] not in ("successful", "submitted", "pending", "duplicated"):
+                    self.update_record_status(id=prev_post["_id"], status="submitted")
+                # if last status is failed then a new record is inserted.
+                if prev_post['status'] == "failed":
+                    post_id = self.cHandle.insert_one(self.post).inserted_id
+            # if no previous record a new record is inserted
+            else:
+                post_id = self.cHandle.insert_one(self.post).inserted_id
             logging.debug(post_id)
             return post_id
         except Exception, e:
