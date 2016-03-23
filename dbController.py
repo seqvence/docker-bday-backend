@@ -85,7 +85,7 @@ class DBdriver:
                 post_id = prev_post['_id']
                 # if status is not in the list "successful", "submitted", "pending", "duplicated"
                 # status is set to "submitted" to be processed again.
-                if prev_post['status'] not in ("successful", "submitted", "pending", "duplicated"):
+                if prev_post['status'] not in ("successful", "submitted", "pending", "duplicated", "failed"):
                     self.update_record_status(id=prev_post["_id"], status="submitted")
                 # if last status is failed then a new record is inserted.
                 if prev_post['status'] == "failed":
