@@ -43,7 +43,7 @@ class Twitter(BaseType):
 
 
 class Submission(Model):
-    name = StringType(required=True, min_length=5, max_length=50)
+    name = StringType(required=True, min_length=3, max_length=50)
     twitter = Twitter()
     location = StringType(required=True, min_length=1, max_length=100)
     repo = ListType(StringType(required=True, regex="^[a-zA-Z0-9-_/:.]*$"), min_size=1, max_size=3, required=True)
