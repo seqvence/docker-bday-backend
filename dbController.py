@@ -83,12 +83,14 @@ class DBdriver:
 
             if prev_post is not None:
                 post_id = prev_post['_id']
-                # if status is not in the list "successful", "submitted", "pending", "duplicated"
+                # if status is not in the list "successful", "submitted", "pending", "duplicated", "failed"
                 # status is set to "submitted" to be processed again.
                 if prev_post['status'] not in ("successful", "submitted", "pending", "duplicated", "failed"):
                     self.update_record_status(id=prev_post["_id"], status="submitted")
-                # if last status is failed then a new record is inserted.
-                if prev_post['status'] == "failed":
+                # if last status is not in the list "successful", "submitted", "pending", "duplicated", "failed"
+                # a new record is inserted
+                #if prev_post['status'] == "failed":
+                else:
                     post_id = self.cHandle.insert_one(self.post).inserted_id
             # if no previous record a new record is inserted
             else:
