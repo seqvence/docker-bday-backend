@@ -68,8 +68,7 @@ class Submission(Resource):
 class Stats(Resource):
     @classmethod
     def get(self):
-        records = mongo.get_all_records("successful")
-        return json.loads(records), 200
+        return json.loads(mongo.get_successful_stats()), 200
 
 
 # Static assets

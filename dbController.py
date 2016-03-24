@@ -20,6 +20,7 @@ class DBdriver:
         self.dbParam = config
         self.dbHandle = None
         self.cHandle = None
+        self.msHandle = None
         self.client = None
         self.post = None
 
@@ -45,6 +46,7 @@ class DBdriver:
             sys.exit(1)
         self.dbHandle = self.client[self.dbParam['database']]
         self.cHandle = self.dbHandle[self.dbParam['collection']]
+        self.msHandle = self.dbHandle[self.dbParam['mapStatsCollection']]
 
     def retrieve_record(self, db_id):
         """
@@ -143,6 +145,13 @@ class DBdriver:
         del response['votes_stats']
 
         return dumps(response)
+
+    def get_successful_stats(self):
+        try:
+            return dumps(json.loads(self.msHandle.find({}, {"_id": 0, "name": 0})[0]))
+        except Exception, e:
+            logging.error(e)
+            return self.get_all_records(status="successful")
 
     def update_record_status(self, id, status):
         """
