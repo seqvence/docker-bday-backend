@@ -70,6 +70,7 @@ class DBdriver:
         :return: ObjectId or None
         """
         self.post = post
+        post_id = "None"
         try:
             prev_post = None
             # Check status for the last submission with the same information
@@ -82,16 +83,20 @@ class DBdriver:
             self.post['statusmsg'] = "Waiting for images to be tested"
 
             if prev_post is not None:
-                post_id = prev_post['_id']
-                # if status is not in the list "successful", "submitted", "pending", "duplicated", "failed"
-                # status is set to "submitted" to be processed again.
-                if prev_post['status'] not in ("successful", "submitted", "pending", "duplicated", "failed"):
-                    self.update_record_status(id=prev_post["_id"], status="submitted")
-                # if last status is not in the list "successful", "submitted", "pending", "duplicated", "failed"
-                # a new record is inserted
-                #if prev_post['status'] == "failed":
-                else:
+                # if status is in the list "successful", "submitted", "pending", "duplicated"
+                # return id
+                if prev_post['status'] in ("successful", "submitted", "pending", "duplicated"):
+                    logging.debug("Previous submission is being processed or has already been processed.")
+                    return str(prev_post['_id'])
+                # If status is failed new record is inserted
+                elif prev_post['status'] == "failed":
+                    logging.debug("Previous submission failed. Let's try it again!")
                     post_id = self.cHandle.insert_one(self.post).inserted_id
+                # Change status to submitted
+                else:
+                    logging.debug("Unknown status. Status changed to submitted")
+                    self.update_record_status(id=prev_post["_id"], status="submitted")
+                    post_id = str(prev_post["_id"])
             # if no previous record a new record is inserted
             else:
                 post_id = self.cHandle.insert_one(self.post).inserted_id
