@@ -80,6 +80,7 @@ class DBdriver:
                 prev_post = record
                 break
 
+            self.post['vote'] = post['vote'].title()
             self.post['status'] = "submitted"
             self.post['submissionTime'] = str(datetime.datetime.utcnow())
             self.post['statusmsg'] = "Waiting for images to be tested"
